@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bussines Online</title>
+    <style>
+        body {
+            background-color: #f7f1e3; /* Soft Beige */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #5a493e;
+        }
+        header {
+            background-color: #a29bfe; /* Light Purple */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        nav {
+            background-color: #dfe6e9; /* Light Grey */
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #5a493e;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 20px;
+            background-color: #f7f1e3; /* Soft Beige */
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #a29bfe; /* Light Purple */
+            color: white;
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            background-color: #dfe6e9; /* Light Grey */
+            color: #5a493e;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .product {
+            border: 2px solid #5a493e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            background-color: #f7f1e3; /* Soft Beige */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .profile span {
+            vertical-align: middle;
+        }
+        .membership {
+            background-color: #ffcccc; /* Light Pink */
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .payment {
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #a29bfe; /* Light Purple */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #6c5ce7; /* Darker Purple */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Bussines Online</h1>
+    </header>
+    <nav id="navbar">
+        <a href="#" onclick="showSection('mainPage')">Home</a>
+        <a href="#" onclick="showSection('profile')">Profile</a>
+        <a href="#" onclick="showSection('sellProducts')">Sell</a>
+        <a href="#" onclick="showSection('memberships')">Memberships</a>
+    </nav>
+    <section id="createProfile">
+        <h2>Create Your Profile</h2>
+        <form action="#" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="dui">DUI:</label>
+            <input type="text" id="dui" name="dui" required><br><br>
+            <input type="submit" value="Create Profile">
+        </form>
+        <button class="back-button" onclick="showSection('mainPage')">Regresar</button>
+    </section>
+    <section id="profile" style="display: none;">
+        <h2>Edit Your Profile</h2>
+        <form action="#" onsubmit="return saveProfile()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age"><br><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+            <input type="submit" value="Save Profile">
+        </form>
+        <button class="back-button" onclick="showSection('mainPage')">Regresar</button>
+    </section>
+    <section id="sellProducts" style="display: none;">
+        <h2>Sell Your Products</h2>
+        <form action="#" onsubmit="return addProduct()">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName"><br><br>
+            <label for="productPrice">Product Price:</label>
+            <input type="number" id="productPrice" name="productPrice"><br><br>
+            <label for="productImage">Product Image:</label>
+            <input type="file" id="productImage" name="productImage"><br><br>
+            <input type="submit" value="Add Product">
+        </form>
+        <button class="back-button" onclick="showSection('mainPage')">Regresar</button>
+    </section>
+    <section id="mainPage" style="display: none;">
+        <h2>Welcome to Bussines Online!</h2>
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <p>Product Name: Product 1</p>
+            <p>Price: $19.99</p>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <p>Product Name: Product 2</p>
+            <p>Price: $29.99</p>
+        </div>
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <p>Product Name: Product 3</p>
+            <p>Price: $14.99</p>
+        </div>
+        <!-- Add more products here -->
+    </section>
+    <section id="memberships" style="display: none;">
+        <h2>Choose Your Membership</h2>
+        <div class="membership">
+            <h3>Level 1</h3>
+            <p>Price: $15.99</p>
+        </div>
+        <div class="membership">
+            <h3>Level 2</h3>
+            <p>Price: $20.99</p>
+        </div>
+        <div class="membership">
+            <h3>Level 3</h3>
+            <p>Price: $30.99</p>
+        </div>
+        <button class="back-button" onclick="showSection('mainPage')">Regresar</button>
+    </section>
+    <section id="payment" style="display: none;">
+        <h2>Enter Payment Information</h2>
+        <div class="payment">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required><br><br>
+            <label for="expiry">Expiry Date:</label>
+            <input type="text" id="expiry" name="expiry" required placeholder="MM/YYYY"><br><br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required><br><br>
+            <input type="submit" value="Submit Payment">
+        </div>
+        <button class="back-button" onclick="showSection('mainPage')">Regresar</button>
+    </section>
+    <footer>
+        <p>© 2024 Bussines Online. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var dui = document.getElementById("dui").value;
+            if (username == "" || password == "" || email == "" || dui == "") {
+                alert("Please fill in all fields.");
+                return false;
+            } else {
+                document.getElementById("createProfile").style.display = "none";
+                document.getElementById("mainPage").style.display = "block";
+                return false;
+            }
+        }
+
+        function editProfile() {
+            showSection('profile');
+        }
+
+        function saveProfile() {
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var description = document.getElementById("description").value;
+            // Aquí puedes guardar la información del perfil en tu base de datos o en local storage
+            alert("Profile saved successfully!");
+            return false; // Para evitar que el formulario se envíe
+        }
+
+        function sellProducts() {
+            showSection('sellProducts');
+        }
+
+        function addProduct() {
+            var productName = document.getElementById("productName").value;
+            var productPrice = document.getElementById("productPrice").value;
+            var productImage = document.getElementById("productImage").value;
+            // Aquí puedes guardar la información del producto en tu base de datos o en local storage
+            alert("Product added successfully!");
+            return false; // Para evitar que el formulario se envíe
+        }
+
+        function showMemberships() {
+            showSection('memberships');
+        }
+
+        function showPayment() {
+            showSection('payment');
+        }
+
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
